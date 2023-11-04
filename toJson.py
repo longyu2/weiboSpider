@@ -25,11 +25,9 @@ def get_url_to_json():
     # 根据输入的数量，循环从接口获取数据并保存
     num = 1
     while(True) :
-        
-        response = requests.get('https://weibo.com/ajax/profile/getImageWall', params=params, cookies=cookies, headers=header)
+        response = requests.get('https://weibo.com/ajax/profile/getImageWall', params=params, cookies=cookies, headers=header)        
+        print(response.text)
         json_dict = json.loads(response.text)
-        # print(response.text)
-
         since_id = str(json_dict["data"]["since_id"])
         print("sinceid是：")
         print(since_id)
