@@ -1,3 +1,4 @@
+#  本文件的主要作用是发起请求，并解析请求，并将信息存储为json
 import json
 from tokenize import cookie_re
 import requests
@@ -49,30 +50,23 @@ def get_url_to_json():
         fp.write(json.dumps(ALL_IMG_ID_LIST,ensure_ascii=False))
 
 
+# 被导入时不会默认运行
+if __name__ == '__main__':
+    ALL_IMG_ID_LIST = []
+    # 从header中取出requests 请求头
+    params = get_headers.params
+    cookies = get_headers.cookies
+    header = get_headers.headers
 
-ALL_IMG_ID_LIST = []
+    # 循环调用接口，每次调用都需要发送一个sinceid ，然后返回的数据能够拿到下次的sinceid ，最后把所有数据放到一起即可
+    # 使用了字典列表的形式存储数据，构造为列表里的每一项是一个如{"date":"具体日期"，"img_id_list":{"pid":"pid的值","mid":"mid的值"}}这样的字典，其中pid就是图片的url了
+    # 加上 https://wx2.sinaimg.cn/large/  的前缀，就能构造出完整url
 
-# 从header中取出requests 请求头
-params = get_headers.params
-cookies = get_headers.cookies
-header = get_headers.headers
+    # 程序开始
+    print("欢迎使用微博相册下载程序")
+    params['uid'] = input("请输入uid:")
 
-# 循环调用接口，每次调用都需要发送一个sinceid ，然后返回的数据能够拿到下次的sinceid ，最后把所有数据放到一起即可
-# 使用了字典列表的形式存储数据，构造为列表里的每一项是一个如{"date":"具体日期"，"img_id_list":{"pid":"pid的值","mid":"mid的值"}}这样的字典，其中pid就是图片的url了
-# 加上 https://wx2.sinaimg.cn/large/  的前缀，就能构造出完整url
-
-# 程序开始
-print("欢迎使用微博相册下载程序")
-params['uid'] = input("请输入uid:")
-
-# params['uid'] = '5391368312'
-
-
-json_name = input("请输入保存为的json文件名(无需后缀名):")
-# json_name = "月瑶兰蝶"
-
-
-
-
-get_url_to_json()
-
+    # params['uid'] = '5391368312'
+    json_name = input("请输入保存为的json文件名(无需后缀名):")
+    # json_name = "月瑶兰蝶"
+    get_url_to_json()

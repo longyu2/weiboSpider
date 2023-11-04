@@ -1,6 +1,4 @@
 import requests
-
-
 cookies = {
     'SINAGLOBAL': '1845421966748.706.1681844419370',
     'PC_TOKEN': '2c1afcba29',
@@ -13,7 +11,6 @@ cookies = {
     'ULV': '1695917688179:6:3:3:4283993956910.004.1695917688111:1695916654220',
     'WBPSESS': 'Prog0-43KpazQQeV_6sfCxrJhNgAsT1eRpZkcaUdFgQpyXGyKQwKcDHKBB68DrhOFk28LDGo9Pkv8G7tPoHMLj9zjx90SlhTSuFWwVTQqOstWyWZsMWOYk3OnIxIygVFjj710E8J_6PJ7xsGVcduFw==',
 }
-
 headers = {
     'authority': 'weibo.com',
     'accept': 'application/json, text/plain, */*',
@@ -32,7 +29,6 @@ headers = {
     'x-requested-with': 'XMLHttpRequest',
     'x-xsrf-token': 'S5V1eUx8C3WKdRrIcmeaqGIS',
 }
-
 params = {
     'uid': '1850920525',
     'sinceid': '0',
