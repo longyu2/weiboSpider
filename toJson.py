@@ -26,7 +26,7 @@ def get_url_to_json():
     # 根据输入的数量，循环从接口获取数据并保存
     num = 1
     while(True) :
-        response = requests.get('https://weibo.com/ajax/profile/getImageWall', params=params, cookies=cookies, headers=header)        
+        response = requests.get('https://weibo.com/ajax/profile/getImageWall',params=params, cookies=cookies, headers=header)        
         print(response.text)
         json_dict = json.loads(response.text)
         since_id = str(json_dict["data"]["since_id"])
@@ -68,5 +68,6 @@ if __name__ == '__main__':
 
     # params['uid'] = '5391368312'
     json_name = input("请输入保存为的json文件名(无需后缀名):")
-    # json_name = "月瑶兰蝶"
+    json_name += "_uid_"
+    json_name += params['uid'] 
     get_url_to_json()

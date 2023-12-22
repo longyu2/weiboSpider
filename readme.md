@@ -6,6 +6,6 @@ headers封装了requests 需要的请求头，
 #### JSONS文件夹存储了输出的json文件，其中pid 即是图片地址，
 
 ### 2.使用方法
-tojson.py,根据提示操作,用户的uid在浏览器地址栏中可以查看
-tojson.py默认只导出json,文件的下载须手动调用main_download()方法，
+1.运行 tojson.py,根据提示操作,用户的uid在浏览器地址栏中可以查看
+2.运行 main_download.py，根据提示输入json文件路径和目标文件夹
 
