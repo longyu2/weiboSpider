@@ -49,8 +49,8 @@ if __name__ == '__main__':
         
     # 解析输入的数字
     num = int(input("请输入数字选择你要下载的选项："))
-    json_path = os.path.join("JSONS",json_list[num])
-    
+    json_path = os.path.join("JSONS",json_list[num-1])
+    print(json_list)
 
     folder = input("请输入目标文件夹路径,置空则默认在本目录下output文件夹")
     if (folder==""):
@@ -59,7 +59,8 @@ if __name__ == '__main__':
     # 读取json文件
     ALL_IMG_ID_LIST = json.loads(tool_file.read(json_path,'r'))
 
-    username = json_list[num].replace(".json","")
+    print(json_path)
+    username = json_list[num-1].replace(".json","")
     main_download(ALL_IMG_ID_LIST,folder,username)
 
 
