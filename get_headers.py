@@ -35,7 +35,6 @@ headers = {
 }
 
 params = {
-    'uid': '7250241260',
     'sinceid': '0',
     'has_album': 'true',
 }

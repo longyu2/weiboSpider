@@ -14,12 +14,16 @@ def main_download(ALL_IMG_ID_LIST,folder,username):
         os.mkdir(os.path.join(folder,username))
     except:
         print("文件夹已存在")
+
     # 计算总有多少张图片
     all_img_count =  0
     for i in ALL_IMG_ID_LIST:
-        for j in i:
+        for j in i["img_id_list"]:
             all_img_count += 1
-   
+        
+
+
+    print ("本次下载"+str(all_img_count)+"张")
 
     with tqdm(total=all_img_count) as pbar:
         pbar.set_description('正在下载，进度')
@@ -28,15 +32,21 @@ def main_download(ALL_IMG_ID_LIST,folder,username):
             index = 1
             # print(i['date']+'的图片开始下载')
             for img_id in i['img_id_list']:
-                imgurl = 'https://wx2.sinaimg.cn/large/'+img_id["pid"]+'.jpg'
 
-                with open (os.path.join(folder,username,i["date"]+"_"+str(index)+".jpg"),'wb') as fp:
-                    fp.write(requests.get(imgurl).content)
+                try:
+                    imgurl = 'https://wx2.sinaimg.cn/large/'+img_id["pid"]+'.jpg'
 
-               
-                pbar.update(1)
-                index += 1
-           
+                    with open (os.path.join(folder,username,i["date"]+"_"+str(index)+".jpg"),'wb') as fp:
+                        fp.write(requests.get(imgurl).content)
+
+                    
+                    index += 1
+                except:
+                    print(imgurl)
+                    continue
+                pbar.update(100/all_img_count) 
+
+            
 
 
 # 被导入时不会默认运行
@@ -52,7 +62,8 @@ if __name__ == '__main__':
     json_path = os.path.join("JSONS",json_list[num-1])
     print(json_list)
 
-    folder = input("请输入目标文件夹路径,置空则默认在本目录下output文件夹")
+
+    folder = "f:/t"
     if (folder==""):
         folder = "output"
 

@@ -4,6 +4,7 @@ from tokenize import cookie_re
 import requests
 import get_headers
 import tool_file
+import time
 
 # 把sinceid转化为方便识别的日期格式
 def sinceid_To_datestr(since_id):
@@ -27,8 +28,8 @@ def get_url_to_json():
     num = 1
     while(True) :
         response = requests.get('https://weibo.com/ajax/profile/getImageWall',params=params, cookies=cookies, headers=header)        
-        print(response.text)
         json_dict = json.loads(response.text)
+
         since_id = str(json_dict["data"]["since_id"])
         print("sinceid是：")
         print(since_id)
